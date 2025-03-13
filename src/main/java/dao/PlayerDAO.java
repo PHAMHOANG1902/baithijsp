@@ -1,6 +1,7 @@
 package dao;
 
 import model.Player;
+import utils.DBConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,19 +10,17 @@ import java.util.List;
 public class PlayerDAO {
     private Connection conn;
 
-    public PlayerDAO() {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // Kết nối đến database (Thay đổi thông tin nếu cần)
-            String jdbcURL = "jdbc:mysql://localhost:3306/player_evaluation";
-            String dbUser = "root";  // Thay bằng username của bạn
-            String dbPassword = "";  // Thay bằng password của bạn
-            conn = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Không thể kết nối đến database!");
+    // Constructor: Lấy kết nối từ DBConnection
+    public PlayerDAO() {
+        this.conn = DBConnection.getConnection();
+        if (this.conn == null) {
+            throw new RuntimeException("❌ Không thể kết nối đến database!");
         }
+    }
+
+    public Connection getConnection() {
+        return conn;
     }
 
     // Hàm thêm cầu thủ

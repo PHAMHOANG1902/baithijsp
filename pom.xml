@@ -44,9 +44,10 @@
         <!-- MySQL Connector -->
         <dependency>
             <groupId>mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-            <version>8.2.0</version>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.28</version>
         </dependency>
+
 
         <!-- JDBC Connection Pooling (Apache Commons DBCP) -->
         <dependency>
